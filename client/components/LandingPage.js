@@ -1,5 +1,8 @@
+import { application } from 'express';
 import React, { Component } from 'react';
-import { Link } from 'react-router-dom';
+import { Route, Link } from 'react-router-dom';
+
+
 
 export default class LandingPage extends Component {
     constructor(props) {
@@ -19,8 +22,22 @@ export default class LandingPage extends Component {
     }
 
     handleFormSubmit(event) {
-      console.log('Form submitted\n', this.state.password, this.state.username);
-      event.preventDefault();
+        event.preventDefault();
+        // COME BACK TO THIS: Make a post request to server
+        // something like this... fetch(POST, {username: this.state.username, password: this.state.username})
+        console.log('Form submitted\n', this.state.password, this.state.username);
+
+        // fetch('/login', {
+        //     method: 'POST',
+        //     headers: {
+        //         'Accept': 'application/json',
+        //         'Content-Type': 'application/json', 
+        //     },
+        //     body: JSON.stringify({
+        //         username: this.state.username, 
+        //         password: this.state.password,
+        //     }),
+        // });
     }
 
     render() {
@@ -28,14 +45,18 @@ export default class LandingPage extends Component {
             <div>
                 {/* create a post request form with username and password entries with a login button */}
                 <form onSubmit={this.handleFormSubmit}>
-                    <input name="username" type="text" value={this.state.username} onChange={this.handleFormChange} placeholder="Username"/>
-                    <input name="password" type="text" value={this.state.password} onChange={this.handleFormChange} placeholder="Password"/>
-                    <input type="submit" value="Log In"/>
+                    <input name="username" type="text" value={this.state.username} onChange={this.handleFormChange} placeholder="Username" />
+                    <input name="password" type="text" value={this.state.password} onChange={this.handleFormChange} placeholder="Password" />
+                    <input type="submit" value="Log In" />
                 </form>
                 {/* create a signup button which redirects react to signup component */}
-                <button>Sign Up</button>
+                <Link to="/signup">
+                    <button>Sign Up</button>
+                    {/* <a href="/signup"><button>Sign Up</button></a> */}
+                </Link>
                 {/* have conditionally rendered div for error message if server cannot verify login */}
             </div>
+
         )
     }
 }

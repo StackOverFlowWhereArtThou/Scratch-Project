@@ -1,6 +1,7 @@
 const path = require('path');
 
 module.exports = {
+  // target: 'node', // added this line to resolve fs issues --> https://webpack.js.org/concepts/targets/
   entry: './client/index.js',
   devServer: {
     publicPath: '/build/',
